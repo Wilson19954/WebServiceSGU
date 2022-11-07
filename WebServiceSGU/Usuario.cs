@@ -4,17 +4,17 @@ namespace WebServiceSGU
 {
     public class Usuario
     {
-        
-        public int id { get; set; } 
-        public String endereco { get; set; }
-        public String nome { get; set; }
-        public String desc { get; set; }
+       
+        public int? id { get; set; } 
+        public String? endereco { get; set; }
+        public String? nome { get; set; }
+        public String? desc { get; set; }
         public String doc { get; set; }
-        public String telefone { get; set; }
-        public String email { get; set; }
-        public String img { get; set; }
+        public String? telefone { get; set; }
+        public String? email { get; set; }
+        public String? img { get; set; }
         public String senha { get; set; }
-        public String tipo { get; set; }
+        public String? tipo { get; set; }
         
         public Usuario() { }
 
