@@ -12,7 +12,8 @@ namespace WebServiceSGU.Controllers
         public IActionResult Publicar([FromBody] Publicacoes publicacoes)
         {
             
-            MySqlConnection con = new MySqlConnection("Server=localhost;Database=sgu;User id=root;Password=95190529");
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
             try
             {
                 publicacoes.like = 0;
@@ -46,12 +47,15 @@ namespace WebServiceSGU.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult buscarTodos()
         {
             List<Publi> listaPubli = new List<Publi>();
 
-            MySqlConnection con = new MySqlConnection("Server=localhost;Database=sgu;User id=root;Password=95190529");
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
+
             try
             {
                 MySqlCommand cmd = new MySqlCommand("SELECT publicacoes.img_pub, publicacoes.desc_pub, publicacoes.like_pub, publicacoes.tag_pub, publicacoes.data_pub, publicacoes.cod_pub, usuario.nome_user, usuario.doc_user, usuario.img_user, usuario.tipo_user FROM publicacoes , usuario WHERE publicacoes.doc_user = usuario.doc_user ORDER BY data_pub DESC;", con);
@@ -91,7 +95,9 @@ namespace WebServiceSGU.Controllers
         {
             List<Publi> listaPubli = new List<Publi>();
 
-            MySqlConnection con = new MySqlConnection("Server=localhost;Database=sgu;User id=root;Password=95190529");
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
+
             try
             {
                 MySqlCommand cmd = new MySqlCommand("select publicacoes.img_pub, publicacoes.desc_pub, publicacoes.like_pub, publicacoes.tag_pub, publicacoes.data_pub, publicacoes.cod_pub, usuario.nome_user, usuario.doc_user, usuario.img_user, usuario.tipo_user from publicacoes , usuario WHERE  usuario.doc_user = @doc AND publicacoes.doc_user = @doc;", con);
@@ -133,7 +139,8 @@ namespace WebServiceSGU.Controllers
             List<Publi> listaPubli = new List<Publi>();
             int like = 0;
 
-            MySqlConnection con = new MySqlConnection("Server=localhost;Database=sgu;User id=root;Password=95190529");
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
             try
             {
                 //select para o código que foi passado como parametro
@@ -196,7 +203,8 @@ namespace WebServiceSGU.Controllers
             List<Publi> listaPubli = new List<Publi>();
             int like = 0;
 
-            MySqlConnection con = new MySqlConnection("Server=localhost;Database=sgu;User id=root;Password=95190529");
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
             try
             {
                 //select para o código que foi passado como parametro

@@ -15,10 +15,11 @@ namespace WebServiceSGU
         public String? img { get; set; }
         public String senha { get; set; }
         public String? tipo { get; set; }
+        public String? cod_ver { get; set; } 
         
         public Usuario() { }
 
-        public Usuario(string endereco, string nome, string desc, string doc, string telefone, string email, string img, string senha, string tipo)
+        public Usuario(string endereco, string nome, string desc, string doc, string telefone, string email, string img, string senha, string tipo, string cod_ver)
         {
             this.endereco = endereco;
             this.nome = nome;
@@ -29,9 +30,10 @@ namespace WebServiceSGU
             this.img = img;
             this.senha = senha;
             this.tipo = tipo;
+            this.cod_ver  = cod_ver;
         }
 
-        public Usuario(int id, string endereco, string nome, string desc, string doc, string telefone, string email, string img, string senha, string tipo)
+        public Usuario(int id, string endereco, string nome, string desc, string doc, string telefone, string email, string img, string senha, string tipo, string cod_ver)
         {
             this.id = id;
             this.endereco = endereco;
@@ -43,6 +45,7 @@ namespace WebServiceSGU
             this.img = img;
             this.senha = senha;
             this.tipo = tipo;
+            this.cod_ver = cod_ver;
         }
     }
 }
