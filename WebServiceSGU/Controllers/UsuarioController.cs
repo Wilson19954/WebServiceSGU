@@ -15,9 +15,9 @@ namespace WebServiceSGU.Controllers
         public IActionResult cadastrar([FromBody] Usuario usuario)
         {
 
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
             try {
+
                 string cod_ver = "";
 
                 MySqlCommand comando = new MySqlCommand("insert into usuario(endereco_user, nome_user, desc_user, doc_user, telefone_user, email_user, img_user, tipo_user, senha_user, codigo_verificacao) values(@endereco,@nome,@desc,@doc,@telefone,@email,@img,@tipo,@senha, @cod_ver)", con);
@@ -53,7 +53,6 @@ namespace WebServiceSGU.Controllers
         public IActionResult login([FromBody] Usuario usuario)
         {
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
             try
             {
                 MySqlCommand cmd = new MySqlCommand("select senha_user from usuario where doc_user = @doc;", con);
@@ -89,7 +88,6 @@ namespace WebServiceSGU.Controllers
             List<Usuario> listaUsuario = new List<Usuario>();
 
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
 
             try
             {
@@ -132,7 +130,6 @@ namespace WebServiceSGU.Controllers
             List<Usuario> listaUsuario = new List<Usuario>();
 
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
 
             try
             {
@@ -174,7 +171,7 @@ namespace WebServiceSGU.Controllers
             List<Usuario> listaUsuario = new List<Usuario>();
 
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
+
 
             try
             {
@@ -253,7 +250,7 @@ namespace WebServiceSGU.Controllers
         public IActionResult enviarToken(string token, string email)
         {
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
+            
             try
             {
                 MySqlCommand cmd = new MySqlCommand("select codigo_verificacao from usuario where email_user = @email;", con);
@@ -371,7 +368,6 @@ namespace WebServiceSGU.Controllers
                     con.Close();
                 }
             }
-
             catch (Exception)
             {
                 throw;

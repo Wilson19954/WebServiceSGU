@@ -61,11 +61,10 @@ namespace WebServiceSGU.Controllers
             List<Projetos> listaProjetos = new List<Projetos>();
 
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            //MySqlConnection con = new MySqlConnection("Server=ESN509VMYSQL;Database=sgu;User id=aluno;Password=Senai1234");
 
             try
             {
-                //MySqlCommand cmd = new MySqlCommand("select projetos.cod_proj, projetos.desc_proj, projetos.custo_proj, projetos.tag_proj, projetos.nome_proj, projetos.doc_user, projetos.data_proj, galeria.img_proj from sgu.projetos, sgu.galeria where doc_user = @doc AND projetos.cod_proj = galeria.cod_proj;", con);
+               
                 MySqlCommand cmd = new MySqlCommand("select * from projetos where doc_user = @doc ", con);
                 cmd.Parameters.AddWithValue("@doc", doc);
                 con.Open();
@@ -92,6 +91,47 @@ namespace WebServiceSGU.Controllers
                 con.Close();
             }
             return listaProjetos.Count == 0 ? NoContent() : Ok(listaProjetos);
+        }
+
+
+        [HttpPut]
+        public IActionResult atualizarProjeto([FromBody] Projetos projetos)
+        {
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            try
+            {
+                var dataAtual = DateTime.Now;
+                var data_Atual = String.Format("{0:yyyy-MM-dd HH:mm:ss}", dataAtual);
+
+                MySqlCommand cmd = new MySqlCommand("UPDATE projetos SET nome_proj=@nomeproj, custo_proj=@custoproj, tag_proj=@tagproj, img_principal_proj=@imgproj, desc_proj=@descproj, data_proj=@datamodificacao WHERE cod_proj = @codproj;", con);
+                cmd.Parameters.AddWithValue("@nomeproj",projetos.nome);
+                cmd.Parameters.AddWithValue("@custoproj", projetos.custo);
+                cmd.Parameters.AddWithValue("@codproj", projetos.cod);
+                cmd.Parameters.AddWithValue("@tagproj", projetos.tag);
+                cmd.Parameters.AddWithValue("@docuser", projetos.doc_user);
+                cmd.Parameters.AddWithValue("@imgproj", projetos.img);
+                cmd.Parameters.AddWithValue("@descproj", projetos.desc);
+                cmd.Parameters.AddWithValue("@datamodificacao", data_Atual);
+
+                con.Open();
+                if (cmd.ExecuteNonQuery() != 0)
+                {
+                    return Ok(new { result = "sucesso", status = 200 });
+                }
+                else
+                {
+                    return NoContent();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
     }
