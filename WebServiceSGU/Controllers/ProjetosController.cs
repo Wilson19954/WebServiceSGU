@@ -134,5 +134,35 @@ namespace WebServiceSGU.Controllers
             }
         }
 
+        [HttpDelete("{cod}")]
+        public IActionResult remover(string cod)
+        {
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("delete from projetos where cod_proj = @cod;", con);
+                cmd.Parameters.AddWithValue("@cod", cod);
+
+                con.Open();
+                if (cmd.ExecuteNonQuery() != 0)
+                {
+                    return Ok(new { result = "sucesso", status = 200 });
+                }
+                else
+                {
+                    return NoContent();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
     }
 }
