@@ -135,7 +135,7 @@ namespace WebServiceSGU.Controllers
         }
 
         [HttpDelete("{cod}")]
-        public IActionResult remover(string cod)
+        public IActionResult removerProjeto(string cod)
         {
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
             try

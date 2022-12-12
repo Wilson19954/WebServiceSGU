@@ -16,7 +16,8 @@ namespace WebServiceSGU.Controllers
         {
 
             MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
-            try {
+            try
+            {
 
                 string cod_ver = "";
 
@@ -41,9 +42,13 @@ namespace WebServiceSGU.Controllers
                 {
                     return NoContent();
                 }
-            } catch(Exception) {
-                throw;  
-            } finally {
+            }
+            catch (Exception) {
+                return Ok(new { result = "falha", status = 204 });
+                throw;
+            }
+            finally
+            {
                 con.Close();
             }    
         }
@@ -373,8 +378,6 @@ namespace WebServiceSGU.Controllers
                 throw;
             }
         }
-
-
 
         private string criptografar(string senha)
         {
