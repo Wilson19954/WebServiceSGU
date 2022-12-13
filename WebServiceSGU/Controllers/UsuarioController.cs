@@ -15,7 +15,7 @@ namespace WebServiceSGU.Controllers
         public IActionResult cadastrar([FromBody] Usuario usuario)
         {
 
-            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString());
+            MySqlConnection con = new MySqlConnection(ConexaoMysql.conexaoString()); 
             try
             {
 
